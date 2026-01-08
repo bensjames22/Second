@@ -30,6 +30,7 @@
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone-dark); }
         header { border-bottom: 4px double var(--stone-dark); padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
         h1 { font-size: 3rem; margin: 0; font-weight: 900; }
+        .tracker-card h4 { color: var(--gold); }
         .subtitle { font-size: 1.2rem; color: var(--leather); font-weight: bold; }
 
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
@@ -141,8 +142,8 @@
                 <strong>HelmsFist (Maul)</strong><br>
                 <em style="font-size:0.9rem">+8 to hit | 1d12 + 5 bludgeoning</em>
                 <div class="toggle-container">
-                    <span>Primodis (Active: +1d4)</span>
-                    <label class="switch"><input type="checkbox" id="primodis"><span class="slider"></span></label>
+                    <span>Primordis (Active: +1d4)</span>
+                    <label class="switch"><input type="checkbox" id="primordis"><span class="slider"></span></label>
                 </div>
             </div>
             
