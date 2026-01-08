@@ -19,6 +19,76 @@
             --gold: #d4af37;
             --magic-purple: #5e35b1;
         }
+        /* Sidebar Layout */
+.sidebar {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+}
+
+@media (max-width: 1400px) {
+    .sidebar { position: static; width: 100%; margin-top: 20px; flex-direction: row; }
+}
+
+/* Notes Box */
+.notes-area {
+    width: 100%;
+    height: 150px;
+    background: var(--parchment);
+    border: 1px solid var(--leather);
+    font-family: 'Cormorant Garamond', serif;
+    padding: 10px;
+    resize: vertical;
+    box-sizing: border-box;
+    background-image: repeating-linear-gradient(transparent, transparent 23px, rgba(141, 110, 99, 0.2) 24px);
+    line-height: 24px;
+}
+
+/* Archaic Calculator */
+.calc-container {
+    background: var(--stone-dark);
+    padding: 15px;
+    border: 3px double var(--gold);
+    border-radius: 5px;
+}
+
+#calc-display {
+    width: 100%;
+    height: 40px;
+    background: #2a2a2a;
+    color: var(--gold);
+    text-align: right;
+    padding: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    border: 1px inset var(--stone-med);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.calc-btn {
+    background: var(--stone-med);
+    color: var(--stone-light);
+    border: 1px solid var(--leather);
+    font-family: 'Cinzel', serif;
+    padding: 10px 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.calc-btn:hover { background: var(--leather); color: white; }
+.calc-btn.op { color: var(--gold); font-weight: bold; }
 
         body {
             font-family: 'Cormorant Garamond', serif;
@@ -232,6 +302,41 @@
             </tbody>
         </table>
     </div>
+    <div class="sidebar">
+    <div class="card" style="margin-bottom:0; padding:15px;">
+        <h4 style="margin-top:0; font-size:0.9rem;">Chronicle Notes</h4>
+        <textarea class="notes-area" placeholder="Record your deeds..."></textarea>
+    </div>
+
+    <div class="calc-container">
+        <h4 style="color:var(--gold); margin-top:0; font-size:0.8rem; text-align:center;">Abacus of Gottfaust</h4>
+        <input type="text" id="calc-display" readonly value="0">
+        <div class="calc-grid">
+            <button class="calc-btn" onclick="cClear()">C</button>
+            <button class="calc-btn op" onclick="cIn('/')">/</button>
+            <button class="calc-btn op" onclick="cIn('*')">×</button>
+            <button class="calc-btn op" onclick="cDel()">←</button>
+            
+            <button class="calc-btn" onclick="cIn('7')">7</button>
+            <button class="calc-btn" onclick="cIn('8')">8</button>
+            <button class="calc-btn" onclick="cIn('9')">9</button>
+            <button class="calc-btn op" onclick="cIn('-')">-</button>
+            
+            <button class="calc-btn" onclick="cIn('4')">4</button>
+            <button class="calc-btn" onclick="cIn('5')">5</button>
+            <button class="calc-btn" onclick="cIn('6')">6</button>
+            <button class="calc-btn op" onclick="cIn('+')">+</button>
+            
+            <button class="calc-btn" onclick="cIn('1')">1</button>
+            <button class="calc-btn" onclick="cIn('2')">2</button>
+            <button class="calc-btn" onclick="cIn('3')">3</button>
+            <button class="calc-btn op" style="grid-row: span 2; background:var(--gold); color:var(--stone-dark)" onclick="cSolve()">=</button>
+            
+            <button class="calc-btn" style="grid-column: span 2;" onclick="cIn('0')">0</button>
+            <button class="calc-btn" onclick="cIn('.')">.</button>
+        </div>
+    </div>
+</div>
 </div>
 
 <script>
@@ -255,6 +360,28 @@
         document.getElementById(name).classList.add('active');
         event.currentTarget.classList.add('active');
     }
+    const cDisp = document.getElementById('calc-display');
+
+function cIn(v) {
+    if (cDisp.value === "0" || cDisp.value === "Error") cDisp.value = v;
+    else cDisp.value += v;
+}
+
+function cClear() { cDisp.value = "0"; }
+
+function cDel() {
+    cDisp.value = cDisp.value.slice(0, -1);
+    if (cDisp.value === "") cDisp.value = "0";
+}
+
+function cSolve() {
+    try {
+        // Using Function() instead of eval() for slightly better safety
+        cDisp.value = Function('"use strict";return (' + cDisp.value + ')')();
+    } catch (e) {
+        cDisp.value = "Error";
+    }
+}
 </script>
 </body>
 </html>
