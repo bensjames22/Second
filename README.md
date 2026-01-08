@@ -302,7 +302,13 @@
             </tbody>
         </table>
     </div>
-    <div class="sidebar">
+    
+</div>
+</div>
+
+</table>
+    </div>
+</div> <div class="sidebar">
     <div class="card" style="margin-bottom:0; padding:15px;">
         <h4 style="margin-top:0; font-size:0.9rem;">Chronicle Notes</h4>
         <textarea class="notes-area" placeholder="Record your deeds..."></textarea>
@@ -335,9 +341,10 @@
             <button class="calc-btn" style="grid-column: span 2;" onclick="cIn('0')">0</button>
             <button class="calc-btn" onclick="cIn('.')">.</button>
         </div>
-    </div>
 </div>
-</div>
+
+<script>
+    // Your JavaScript follows...
 
 <script>
     const S = {
