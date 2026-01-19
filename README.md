@@ -48,6 +48,7 @@
     background-image: repeating-linear-gradient(transparent, transparent 23px, rgba(141, 110, 99, 0.2) 24px);
     line-height: 24px;
 }
+
 <div class="section">
     <label class="archaic-label">Sacred Vows & Boons</label>
     <div class="passive-box">
@@ -79,6 +80,7 @@
         </ul>
     </div>
 </div>
+
 /* Archaic Calculator */
 .calc-container {
     background: var(--stone-dark);
@@ -195,40 +197,40 @@
         @keyframes fadeEffect { from {opacity: 0;} to {opacity: 1;} }
         
         /* Passive Box Styling */
-.passive-box {
+    .passive-box {
     background: #fdf6e3;
     border: 1px solid #a1887f;
     padding: 5px;
-}
+    }
 
-.passive-list {
+    .passive-list {
     list-style-type: none; /* Remove default bullets */
     padding: 0;
     margin: 0;
-}
+    }
 
-.passive-list li {
+    .passive-list li {
     padding: 6px;
     border-bottom: 1px dashed #a1887f; /* Dashed line between traits */
-}
+    }
 
-.passive-list li:last-child {
+    .passive-list li:last-child {
     border-bottom: none;
-}
+    }
 
-.trait-name {
+    .trait-name {
     display: block;
     font-weight: bold;
     font-variant: small-caps; /* Looks more like a header */
     color: #3e2723;
     font-size: 1em;
-}
+    }
 
-.trait-desc {
+    .trait-desc {
     font-size: 0.85em;
     font-style: italic;
     color: #5d4037;
-}
+    }
     </style>
 </head>
 <body>
