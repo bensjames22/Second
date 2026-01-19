@@ -49,39 +49,6 @@
     line-height: 24px;
 }
 
-/* Passive Traits */
-<div class="section">
-    <label class="archaic-label">Sacred Vows & Boons</label>
-    <div class="passive-box">
-        <ul class="passive-list">
-            <li>
-                <span class="trait-name">Divine Sense</span>
-                <span class="trait-desc">Detect celestial, fiend, undead (60ft)</span>
-            </li>
-            <li>
-                <span class="trait-name">Divine Health</span>
-                <span class="trait-desc">Immune to all disease</span>
-            </li>
-            <li>
-                <span class="trait-name">Channel Divinity</span>
-                <span class="trait-desc">Guided Strike / Conquering Presence</span>
-            </li>
-            <li>
-                <span class="trait-name">Extra Attack</span>
-                <span class="trait-desc">Attack twice per action</span>
-            </li>
-            <li>
-                <span class="trait-name">Aura of Protection</span>
-                <span class="trait-desc">Add CHA to saves (10ft)</span>
-            </li>
-            <li>
-                <span class="trait-name">Aura of Conquest</span>
-                <span class="trait-desc">Frightened creature speed = 0</span>
-            </li>
-        </ul>
-    </div>
-</div>
-
 /* Archaic Calculator */
 .calc-container {
     background: var(--stone-dark);
@@ -373,14 +340,43 @@
     </div>
     
 </div>
-</div>
 
-</table>
-    </div>
-</div> <div class="sidebar">
+<div class="sidebar">
     <div class="card" style="margin-bottom:0; padding:15px;">
         <h4 style="margin-top:0; font-size:0.9rem;">Chronicle Notes</h4>
         <textarea class="notes-area" placeholder="Record your deeds..."></textarea>
+    </div>
+
+    <div class="card" style="margin-bottom:0; padding:10px;">
+        <h4 style="margin-top:0; font-size:0.9rem; margin-bottom:10px;">Sacred Vows</h4>
+        <div class="passive-box">
+            <ul class="passive-list">
+                <li>
+                    <span class="trait-name">Divine Sense</span>
+                    <span class="trait-desc">Detect celestial, fiend, undead (60ft)</span>
+                </li>
+                <li>
+                    <span class="trait-name">Divine Health</span>
+                    <span class="trait-desc">Immune to all disease</span>
+                </li>
+                <li>
+                    <span class="trait-name">Channel Divinity</span>
+                    <span class="trait-desc">Guided Strike / Conquering Presence</span>
+                </li>
+                <li>
+                    <span class="trait-name">Extra Attack</span>
+                    <span class="trait-desc">Attack twice per action</span>
+                </li>
+                <li>
+                    <span class="trait-name">Aura of Protection</span>
+                    <span class="trait-desc">Add CHA to saves (10ft)</span>
+                </li>
+                <li>
+                    <span class="trait-name">Aura of Conquest</span>
+                    <span class="trait-desc">Frightened creature speed = 0</span>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="calc-container">
