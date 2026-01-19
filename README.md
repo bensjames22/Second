@@ -144,6 +144,58 @@
         input:checked + .slider { background-color: var(--magic-purple); }
         input:checked + .slider:before { transform: translateX(22px); }
 
+        /* Sidebar Sliding Logic */
+    .sidebar {
+    position: fixed;
+    right: 0; /* Changed from 20px to sit flush with the edge */
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: var(--stone-dark); /* Solid background for the drawer */
+    border-left: 4px double var(--gold);
+    transition: transform 0.4s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2000;
+    }
+
+    /* This class moves the sidebar off-screen */
+    .sidebar.collapsed {
+    transform: translateX(100%);
+    }
+
+    .sidebar-inner-content {
+    overflow-y: auto; /* Allows scrolling inside the sidebar if content is long */
+    height: 100%;
+    }
+
+    /* The Toggle Button Handle */
+    .sidebar-toggle {
+    position: absolute;
+    left: -50px; /* Pulls it outside the sidebar */
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--leather);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.5);
+    }
+
+    .sidebar-toggle:hover {
+    background: var(--leather-light);
+    }
+
         /* Diamond Spell Slots */
         .slot-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; background: rgba(0,0,0,0.05); padding: 10px; border-radius: 4px; }
         .diamond-group { display: flex; gap: 15px; }
@@ -341,72 +393,72 @@
     
 </div>
 
-<div class="sidebar">
-    <div class="card" style="margin-bottom:0; padding:15px;">
-        <h4 style="margin-top:0; font-size:0.9rem;">Chronicle Notes</h4>
-        <textarea class="notes-area" placeholder="Record your deeds..."></textarea>
-    </div>
+<div class="sidebar" id="main-sidebar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">📜</button>
 
-    <div class="card" style="margin-bottom:0; padding:10px;">
-        <h4 style="margin-top:0; font-size:0.9rem; margin-bottom:10px;">Sacred Vows</h4>
-        <div class="passive-box">
-            <ul class="passive-list">
-                <li>
-                    <span class="trait-name">Divine Sense</span>
-                    <span class="trait-desc">Detect celestial, fiend, undead (60ft)</span>
-                </li>
-                <li>
-                    <span class="trait-name">Divine Health</span>
-                    <span class="trait-desc">Immune to all disease</span>
-                </li>
-                <li>
-                    <span class="trait-name">Channel Divinity</span>
-                    <span class="trait-desc">Guided Strike / Conquering Presence</span>
-                </li>
-                <li>
-                    <span class="trait-name">Extra Attack</span>
-                    <span class="trait-desc">Attack twice per action</span>
-                </li>
-                <li>
-                    <span class="trait-name">Aura of Protection</span>
-                    <span class="trait-desc">Add CHA to saves (10ft)</span>
-                </li>
-                <li>
-                    <span class="trait-name">Aura of Conquest</span>
-                    <span class="trait-desc">Frightened creature speed = 0</span>
-                </li>
-            </ul>
+    <div class="sidebar-inner-content">
+        <div class="card" style="margin-bottom:0; padding:15px;">
+            <h4 style="margin-top:0; font-size:0.9rem;">Chronicle Notes</h4>
+            <textarea class="notes-area" placeholder="Record your deeds..."></textarea>
+        </div>
+
+        <div class="card" style="margin-bottom:0; padding:15px;">
+            <h4 style="margin-top:0; font-size:0.9rem; border-bottom: 1px solid var(--leather); padding-bottom: 5px;">Sacred Vows & Boons</h4>
+            <div class="passive-box">
+                <ul class="passive-list">
+                    <li>
+                        <span class="trait-name">Divine Sense</span>
+                        <span class="trait-desc">Detect celestial, fiend, undead (60ft)</span>
+                    </li>
+                    <li>
+                        <span class="trait-name">Divine Health</span>
+                        <span class="trait-desc">Immune to all disease</span>
+                    </li>
+                    <li>
+                        <span class="trait-name">Channel Divinity</span>
+                        <span class="trait-desc">Guided Strike / Conquering Presence</span>
+                    </li>
+                    <li>
+                        <span class="trait-name">Extra Attack</span>
+                        <span class="trait-desc">Attack twice per action</span>
+                    </li>
+                    <li>
+                        <span class="trait-name">Aura of Protection</span>
+                        <span class="trait-desc">Add CHA to saves (10ft)</span>
+                    </li>
+                    <li>
+                        <span class="trait-name">Aura of Conquest</span>
+                        <span class="trait-desc">Frightened creature speed = 0</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="calc-container">
+            <h4 style="color:var(--gold); margin-top:0; font-size:0.8rem; text-align:center;">Abacus of Gottfaust</h4>
+            <input type="text" id="calc-display" readonly value="0">
+            <div class="calc-grid">
+                <button class="calc-btn" onclick="cClear()">C</button>
+                <button class="calc-btn op" onclick="cIn('/')">/</button>
+                <button class="calc-btn op" onclick="cIn('*')">×</button>
+                <button class="calc-btn op" onclick="cDel()">←</button>
+                <button class="calc-btn" onclick="cIn('7')">7</button>
+                <button class="calc-btn" onclick="cIn('8')">8</button>
+                <button class="calc-btn" onclick="cIn('9')">9</button>
+                <button class="calc-btn op" onclick="cIn('-')">-</button>
+                <button class="calc-btn" onclick="cIn('4')">4</button>
+                <button class="calc-btn" onclick="cIn('5')">5</button>
+                <button class="calc-btn" onclick="cIn('6')">6</button>
+                <button class="calc-btn op" onclick="cIn('+')">+</button>
+                <button class="calc-btn" onclick="cIn('1')">1</button>
+                <button class="calc-btn" onclick="cIn('2')">2</button>
+                <button class="calc-btn" onclick="cIn('3')">3</button>
+                <button class="calc-btn op" style="grid-row: span 2; background:var(--gold); color:var(--stone-dark)" onclick="cSolve()">=</button>
+                <button class="calc-btn" style="grid-column: span 2;" onclick="cIn('0')">0</button>
+                <button class="calc-btn" onclick="cIn('.')">.</button>
+            </div>
         </div>
     </div>
-
-    <div class="calc-container">
-        <h4 style="color:var(--gold); margin-top:0; font-size:0.8rem; text-align:center;">Abacus of Gottfaust</h4>
-        <input type="text" id="calc-display" readonly value="0">
-        <div class="calc-grid">
-            <button class="calc-btn" onclick="cClear()">C</button>
-            <button class="calc-btn op" onclick="cIn('/')">/</button>
-            <button class="calc-btn op" onclick="cIn('*')">×</button>
-            <button class="calc-btn op" onclick="cDel()">←</button>
-            
-            <button class="calc-btn" onclick="cIn('7')">7</button>
-            <button class="calc-btn" onclick="cIn('8')">8</button>
-            <button class="calc-btn" onclick="cIn('9')">9</button>
-            <button class="calc-btn op" onclick="cIn('-')">-</button>
-            
-            <button class="calc-btn" onclick="cIn('4')">4</button>
-            <button class="calc-btn" onclick="cIn('5')">5</button>
-            <button class="calc-btn" onclick="cIn('6')">6</button>
-            <button class="calc-btn op" onclick="cIn('+')">+</button>
-            
-            <button class="calc-btn" onclick="cIn('1')">1</button>
-            <button class="calc-btn" onclick="cIn('2')">2</button>
-            <button class="calc-btn" onclick="cIn('3')">3</button>
-            <button class="calc-btn op" style="grid-row: span 2; background:var(--gold); color:var(--stone-dark)" onclick="cSolve()">=</button>
-            
-            <button class="calc-btn" style="grid-column: span 2;" onclick="cIn('0')">0</button>
-            <button class="calc-btn" onclick="cIn('.')">.</button>
-        </div>
-    </div>   
 </div>
 
 <script>
@@ -451,6 +503,10 @@ function cSolve() {
     } catch (e) {
         cDisp.value = "Error";
     }
+}
+function toggleSidebar() {
+    const sidebar = document.getElementById('main-sidebar');
+    sidebar.classList.toggle('collapsed');
 }
 </script>
 </body>
