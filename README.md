@@ -48,7 +48,37 @@
     background-image: repeating-linear-gradient(transparent, transparent 23px, rgba(141, 110, 99, 0.2) 24px);
     line-height: 24px;
 }
-
+<div class="section">
+    <label class="archaic-label">Sacred Vows & Boons</label>
+    <div class="passive-box">
+        <ul class="passive-list">
+            <li>
+                <span class="trait-name">Divine Sense</span>
+                <span class="trait-desc">Detect celestial, fiend, undead (60ft)</span>
+            </li>
+            <li>
+                <span class="trait-name">Divine Health</span>
+                <span class="trait-desc">Immune to all disease</span>
+            </li>
+            <li>
+                <span class="trait-name">Channel Divinity</span>
+                <span class="trait-desc">Guided Strike / Conquering Presence</span>
+            </li>
+            <li>
+                <span class="trait-name">Extra Attack</span>
+                <span class="trait-desc">Attack twice per action</span>
+            </li>
+            <li>
+                <span class="trait-name">Aura of Protection</span>
+                <span class="trait-desc">Add CHA to saves (10ft)</span>
+            </li>
+            <li>
+                <span class="trait-name">Aura of Conquest</span>
+                <span class="trait-desc">Frightened creature speed = 0</span>
+            </li>
+        </ul>
+    </div>
+</div>
 /* Archaic Calculator */
 .calc-container {
     background: var(--stone-dark);
@@ -163,6 +193,42 @@
         .controls button { flex: 1; cursor: pointer; padding: 5px; font-family: 'Cinzel'; font-weight: bold; border: 1px solid var(--stone-dark); }
         
         @keyframes fadeEffect { from {opacity: 0;} to {opacity: 1;} }
+        
+        /* Passive Box Styling */
+.passive-box {
+    background: #fdf6e3;
+    border: 1px solid #a1887f;
+    padding: 5px;
+}
+
+.passive-list {
+    list-style-type: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.passive-list li {
+    padding: 6px;
+    border-bottom: 1px dashed #a1887f; /* Dashed line between traits */
+}
+
+.passive-list li:last-child {
+    border-bottom: none;
+}
+
+.trait-name {
+    display: block;
+    font-weight: bold;
+    font-variant: small-caps; /* Looks more like a header */
+    color: #3e2723;
+    font-size: 1em;
+}
+
+.trait-desc {
+    font-size: 0.85em;
+    font-style: italic;
+    color: #5d4037;
+}
     </style>
 </head>
 <body>
