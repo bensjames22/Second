@@ -49,6 +49,7 @@
     line-height: 24px;
 }
 
+/* Passive Traits */
 <div class="section">
     <label class="archaic-label">Sacred Vows & Boons</label>
     <div class="passive-box">
